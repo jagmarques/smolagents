@@ -29,7 +29,7 @@ returned unchanged, so it plugs straight into your agent:
 ```python
 import asqav
 from asqav.extras.smolagents import AsqavSmolagentsHook
-from smolagents import CodeAgent, HfApiModel, tool
+from smolagents import CodeAgent, InferenceClientModel, tool
 
 asqav.init()  # reads ASQAV_API_KEY
 
@@ -45,7 +45,7 @@ def get_weather(city: str) -> str:
 hook = AsqavSmolagentsHook(agent_name="weather-agent")
 signed_weather = hook.wrap_tool(get_weather)
 
-agent = CodeAgent(tools=[signed_weather], model=HfApiModel())
+agent = CodeAgent(tools=[signed_weather], model=InferenceClientModel())
 agent.run("What is the weather in Paris?")
 ```
 
